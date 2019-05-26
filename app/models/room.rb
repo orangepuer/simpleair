@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
   belongs_to :user
 
-  validates :home_type, :room_type, :accommodate, :bed_room, :bath_room, presence: true
+  validates :home_type, :room_type, :accommodate, :bedroom_amount, :bathroom_amount, presence: true
 end

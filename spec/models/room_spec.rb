@@ -6,6 +6,6 @@ RSpec.describe Room, type: :model do
   it { should validate_presence_of :home_type }
   it { should validate_presence_of :room_type }
   it { should validate_presence_of :accommodate }
-  it { should validate_presence_of :bed_room }
-  it { should validate_presence_of :bath_room }
+  it { should validate_presence_of :bedroom_amount }
+  it { should validate_presence_of :bathroom_amount }
 end

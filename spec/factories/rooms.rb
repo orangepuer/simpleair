@@ -3,8 +3,8 @@ FactoryBot.define do
     home_type { "MyString" }
     room_type { "MyString" }
     accommodate { 1 }
-    bed_room { 1 }
-    bath_room { 1 }
+    bedroom_amount { 1 }
+    bathroom_amount { 1 }
     listing_name { "MyString" }
     summary { "MyText" }
     address { "MyString" }
