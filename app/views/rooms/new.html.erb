@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Create your beautiful place
+  </div>
+  <div class="panel-body">
+    <div class="container">
+      <%= form_with(model: @room, local: true) do |f| %>
+        <div class="row">
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <%= f.label :home_type %>
+              <%= f.select :home_type,
+                           [['Apartment', 'Apartment'], ['House', 'House'], ['Bed & Breakfast', 'Bed & Breakfast']],
+                           id: 'home_type', prompt: 'Select...', class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <%= f.label :room_type %>
+              <%= f.select :room_type,
+                           [['Entire', 'Entire'], ['Private', 'private'], ['Shared', 'Shared']],
+                           id: 'room_type', prompt: 'Select...', class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <%= f.label :accommodate %>
+              <%= f.select :accommodate,
+                           [['1', 1], ['2', 2], ['3', 3], ['4+', 4]],
+                           id: 'accommodate', prompt: 'Select...', class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <%= f.label :bedroom_amount %>
+              <%= f.select :bedroom_amount,
+                           [['1', 1], ['2', 2], ['3', 3], ['4+', 4]],
+                           id: 'bed_room', prompt: 'Select...', class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="col-md-4 select">
+            <div class="form-group">
+              <%= f.label :bathroom_amount %>
+              <%= f.select :bathroom_amount,
+                           [['1', 1], ['2', 2], ['3', 3], ['4+', 4]],
+                           id: 'bath_room', prompt: 'Select...', class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+        <%= f.submit class: 'btn btn-normal' %>
+      <% end %>
+    </div>
+  </div>
+</div>
