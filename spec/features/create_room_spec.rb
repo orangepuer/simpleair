@@ -16,8 +16,8 @@ feature 'Create room' do
     click_on 'Create Room'
 
     expect(page).to have_content 'listing'
-    expect(page).to have_content 'Apartment'
-    expect(page).to have_content 'Entire'
+    expect(page).to have_select 'Home type', with_selected: 'Apartment'
+    expect(page).to have_select 'Room type', with_selected: 'Entire'
     expect(page).to have_select 'Accommodate', with_selected: '1'
     expect(page).to have_select 'Bedroom amount', with_selected: '2'
     expect(page).to have_select 'Bathroom amount', with_selected: '3'
