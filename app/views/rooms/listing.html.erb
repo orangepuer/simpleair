@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'room_menu' %>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        listing
+      </div>
+      <div class="panel-body">
+        <div class="container">
+          <%= form_with(model: @room) do |f| %>
+            <div class="row">
+              <div class="col-md-4 select">
+                <div class="form-group">
+                  <%= f.label :home_type %>
+                  <%= f.select :home_type,
+                               [['Apartment', 'Apartment'], ['House', 'House'], ['Bed & Breakfast', 'Bed & Breakfast']],
+                               prompt: 'Select...', class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col-md-4 select">
+                <div class="form-group">
+                  <%= f.label :room_type %>
+                  <%= f.select :room_type,
+                               [['Entire', 'Entire'], ['Private', 'private'], ['Shared', 'Shared']],
+                               prompt: 'Select...', class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col-md-4 select">
+                <div class="form-group">
+                  <%= f.label :accommodate %>
+                  <%= f.select :accommodate,
+                               [['1', 1], ['2', 2], ['3', 3], ['4+', 4]],
+                               prompt: 'Select...', class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col-md-4 select">
+                <div class="form-group">
+                  <%= f.label :bedroom_amount %>
+                  <%= f.select :bedroom_amount,
+                               [['1', 1], ['2', 2], ['3', 3], ['4+', 4]],
+                               prompt: 'Select...', class: 'form-control' %>
+                </div>
+              </div>
+              <div class="col-md-4 select">
+                <div class="form-group">
+                  <%= f.label :bathroom_amount %>
+                  <%= f.select :bathroom_amount,
+                               [['1', 1], ['2', 2], ['3', 3], ['4+', 4]],
+                               prompt: 'Select...', class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <%= f.submit class: 'btn btn-normal' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
