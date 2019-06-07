@@ -1,0 +1,21 @@
+<% if @photos.attached? %>
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading preview">
+            <%= image_tag photo.variant(resize: "200x200") %>
+          </div>
+          <div class="panel-body">
+            <span class="pull-right">
+              <%= link_to room_photo_path(@room, photo), method: :delete, remote: true,
+                          data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
