@@ -8,6 +8,13 @@ class PhotosController < ApplicationController
     redirect_back(fallback_location: request.referer, notice: 'Saved')
   end
 
+  def destroy
+    @photos = @room.photos
+    @photos.find(params[:id]).purge if params[:id]
+
+    respond_to :js
+  end
+
   private
 
   def set_room

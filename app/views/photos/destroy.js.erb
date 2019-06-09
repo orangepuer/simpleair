@@ -1,0 +1,5 @@
+$('.photos').html('<%= j render 'photo_list' %>')
+<% if @room.photos.blank? %>
+  $('.photo-check').remove()
+  $('.publish-button').attr('disabled', true)
+<% end %>
