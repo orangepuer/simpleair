@@ -1,20 +1,43 @@
 <ul class="sidebar-list">
   <li class="sidebar-item">
     <%= link_to 'Listing', listing_room_path, class: 'sidebar-link active' %>
+    <i class="fa fa-check pull-right color-sea"></i>
   </li>
   <li class="sidebar-item">
     <%= link_to 'Pricing', pricing_room_path, class: 'sidebar-link active' %>
+    <% if @room.price.present? %>
+      <i class="fa fa-check pull-right color-sea"></i>
+    <% end %>
   </li>
   <li class="sidebar-item">
     <%= link_to 'Description', description_room_path, class: 'sidebar-link active' %>
+    <% if @room.listing_name.present? %>
+      <i class="fa fa-check pull-right color-sea"></i>
+    <% end %>
   </li>
   <li class="sidebar-item">
     <%= link_to 'Photos', photo_upload_room_path, class: 'sidebar-link active' %>
+    <% if @room.photos.present? %>
+      <i class="fa fa-check pull-right color-sea photo-check"></i>
+    <% end %>
   </li>
   <li class="sidebar-item">
     <%= link_to 'Amenities', amenities_room_path, class: 'sidebar-link active' %>
+    <i class="fa fa-check pull-right color-sea"></i>
   </li>
   <li class="sidebar-item">
     <%= link_to 'Location', location_room_path, class: 'sidebar-link active' %>
+    <% if @room.address.present? %>
+      <i class="fa fa-check pull-right color-sea"></i>
+    <% end %>
   </li>
 </ul>
+
+<%= form_with(model: @room, local: true) do |f| %>
+  <% if @room.active? %>
+    <%= f.submit 'Published', class: 'btn btn-normal btn-block', disabled: true %>
+  <% else %>
+    <%= f.hidden_field :active, value: true %>
+    <%= f.submit 'Publish', class: 'btn btn-normal btn-block publish-button', disabled: !@room.data_prepared? %>
+  <% end %>
+<% end %>
