@@ -3,6 +3,9 @@ class Room < ApplicationRecord
 
   has_many_attached :photos
 
+  geocoded_by :address
+  after_validation :geocode, if: lambda{ |obj| obj.address_changed? }
+
   validates :home_type, :room_type, :accommodate, :bedroom_amount, :bathroom_amount, presence: true
 
   def data_prepared?
