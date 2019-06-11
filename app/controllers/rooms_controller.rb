@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, except: [:index, :new, :create]
+  before_action :set_photos, only: [:show, :photo_upload]
   before_action :authenticate_user!, except: [:show]
 
   def index
@@ -44,7 +45,6 @@ class RoomsController < ApplicationController
   end
 
   def photo_upload
-    @photos = @room.photos
   end
 
   def amenities
@@ -57,6 +57,10 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
+  end
+
+  def set_photos
+    @photos = @room.photos
   end
 
   def room_params
