@@ -1,3 +1,8 @@
+<script>
+  $(document).on("turbolinks:load", function(){
+    initMap(<%= @room.latitude %>, <%= @room.longitude %>)
+  });
+</script>
 <div class="row">
   <div class="col-md-12">
     <%= image_tag @room.photos.first.variant(resize: "980x980") if @room.photos.attached? %>
