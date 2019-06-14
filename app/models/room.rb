@@ -1,12 +1,14 @@
 class Room < ApplicationRecord
   belongs_to :user
+  has_many :reservations
 
   has_many_attached :photos
 
-  geocoded_by :address
+  validates :home_type, :room_type, :accommodate, :bedroom_amount, :bathroom_amount, presence: true
+
   after_validation :geocode, if: lambda{ |obj| obj.address_changed? }
 
-  validates :home_type, :room_type, :accommodate, :bedroom_amount, :bathroom_amount, presence: true
+  geocoded_by :address
 
   def data_prepared?
     listing_name.present? && address.present? && price.present? && photos.attached?

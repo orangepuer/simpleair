@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :rooms
+  has_many :reservations
 
   validates :fullname, presence: true, length: {maximum: 50}
 end
