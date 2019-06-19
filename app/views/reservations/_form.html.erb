@@ -1,9 +1,57 @@
-<%= form_with(model: [@room, @room.reservations.new], local: true) do |f| %>
-  <%= f.text_field :start_date %>
-  <%= f.text_field :end_date %>
-  <br>
-  <%= f.submit 'Book now', class: 'btn btn-normal btn-block' %>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span><i class="fa fa-bolt" style="color:#ffb400"></i><%= @room.price %></span>
+    <span class="pull-right">Per Night</span>
+  </div>
+  <div class="panel-body">
+    <%= form_with(model: [@room, @room.reservations.new], local: true) do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.label :start_date, 'Check In' %>
+          <%= f.text_field :start_date, readonly: true, placeholder: 'Start Date', class: 'form-control datepicker' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :start_date, 'Check Out' %>
+          <%= f.text_field :end_date, readonly: true, placeholder: 'End Date', class: 'form-control datepicker' %>
+        </div>
+        <div id="preview" style="display:none">
+          <table class="reservation-table">
+            <tbody>
+            <tr>
+              <td>
+                Price
+              </td>
+              <td class="text-right">
+                <%= @room.price %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Nights
+              </td>
+              <td class="text-right">
+                x <span id="reservation_days"></span>
+              </td>
+            </tr>
+            <tr>
+              <td class="total">
+                Total
+              </td>
+              <td class="text-right">
+                $ <span id="reservation_total"></span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <br>
+      <%= f.submit 'Book now', class: 'btn btn-normal btn-block' %>
+    <% end %>
+  </div>
+</div>
+
 <script type="text/javascript" charset="utf-8">
   $(function() {
     $('#reservation_start_date').datepicker({
