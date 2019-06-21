@@ -13,4 +13,9 @@ class Room < ApplicationRecord
   def data_prepared?
     listing_name.present? && address.present? && price.present? && photos.attached?
   end
+
+  def reserved_dates
+    today = Date.today
+    reservations.where('start_date >= ? OR end_date >=?', today, today)
+  end
 end
