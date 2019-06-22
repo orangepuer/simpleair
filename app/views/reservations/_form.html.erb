@@ -1,3 +1,8 @@
+<script type="text/javascript" charset="utf-8">
+  document.addEventListener("turbolinks:load", function() {
+    initCalendar(<%= sanitize(@room.reserved_dates.to_json) %>);
+  });
+</script>
 <div class="panel panel-default">
   <div class="panel-heading">
     <span><i class="fa fa-bolt" style="color:#ffb400"></i><%= @room.price %></span>
@@ -12,7 +17,7 @@
         </div>
         <div class="col-md-6">
           <%= f.label :start_date, 'Check Out' %>
-          <%= f.text_field :end_date, readonly: true, placeholder: 'End Date', class: 'form-control datepicker' %>
+          <%= f.text_field :end_date, readonly: true, placeholder: 'End Date', class: 'form-control datepicker', disabled: true %>
         </div>
         <div id="preview" style="display:none">
           <table class="reservation-table">
