@@ -19,6 +19,9 @@
           <%= f.label :start_date, 'Check Out' %>
           <%= f.text_field :end_date, readonly: true, placeholder: 'End Date', class: 'form-control datepicker', disabled: true %>
         </div>
+        <h4 class="message-alert text-center">
+          <span id="error-message"></span>
+        </h4>
         <div id="preview" style="display:none">
           <table class="reservation-table">
             <tbody>
@@ -35,7 +38,7 @@
                 Nights
               </td>
               <td class="text-right">
-                x <span id="reservation_days"></span>
+                x <span id="reservation_nights"></span>
               </td>
             </tr>
             <tr>
@@ -51,7 +54,7 @@
         </div>
       </div>
       <br>
-      <%= f.submit 'Book now', class: 'btn btn-normal btn-block' %>
+      <%= f.submit 'Book now', id: 'btn-reservation', class: 'btn btn-normal btn-block', disabled: true %>
     <% end %>
   </div>
 </div>
