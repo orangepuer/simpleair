@@ -1,6 +1,6 @@
 <script type="text/javascript" charset="utf-8">
   document.addEventListener("turbolinks:load", function() {
-    initCalendar(<%= sanitize(@room.reserved_dates.to_json) %>);
+    initCalendar(<%= sanitize(@room.reserved_dates.to_json) %>, <%= @room.price %>);
   });
 </script>
 <div class="panel panel-default">

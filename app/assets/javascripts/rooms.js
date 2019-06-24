@@ -17,13 +17,59 @@ function initMap(lat, lng) {
   });
 }
 
-function initCalendar(reservedDates) {
+function initCalendar(reservedDates, price) {
   let unavailableDates = [];
 
   function checkDate(date) {
     dayMonthYear = date.getDate() +  '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
 
     return [!unavailableDates.includes(dayMonthYear)]
+  }
+
+  function validateDate(userStartDate, userEndDate) {
+    let isDateValid = true;
+
+    reservedDates.forEach(function (value) {
+      let reservedStartDate = new Date(new Date(value.start_date) - new Date(3*1000*60*60));
+      let reservedEndDate = new Date(new Date(value.end_date) - new Date(3*1000*60*60));
+
+      if (userStartDate < reservedStartDate && userEndDate > reservedEndDate) {
+        isDateValid = false;
+      }
+    });
+
+    return isDateValid
+  }
+
+  function getNumberOfDays(userStartDate, userEndDate) {
+    let days = (userEndDate - userStartDate)/1000/60/60/24 + 1;
+
+    return days
+  }
+  
+  function showDetailsReservation(countDays) {
+    if (countDays > 0) {
+      $('#btn-reservation').attr('disabled', false);
+      $('#reservation_nights').text(countDays);
+      $('#reservation_total').text(countDays * price);
+    }
+
+    $('#error-message').text('');
+    $('#preview').show();
+  }
+
+  function hideDetailsReservation() {
+    $('#error-message').text('These dates are not unavailable');
+    $('#preview').hide();
+    $('#btn-reservation').attr('disabled', true);
+  }
+
+  function changeCalendar(isDateValid, countDays) {
+    if (isDateValid) {
+      showDetailsReservation(countDays);
+    } else {
+      hideDetailsReservation();
+    }
   }
 
   reservedDates.forEach(function (value) {
@@ -40,6 +86,17 @@ function initCalendar(reservedDates) {
     onSelect: function (selected) {
       $('#reservation_end_date').datepicker('option', 'minDate', selected);
       $('#reservation_end_date').attr('disabled', false);
+
+      let userStartDate = $('#reservation_start_date').datepicker('getDate');
+      let userEndDate = $('#reservation_end_date').datepicker('getDate');
+      let isDateValid = validateDate(userStartDate, userEndDate);
+      let countDays = 0;
+
+      if (userEndDate) {
+        countDays = getNumberOfDays(userStartDate, userEndDate);
+      }
+
+      changeCalendar(isDateValid, countDays);
     }
   });
 
@@ -50,6 +107,13 @@ function initCalendar(reservedDates) {
     beforeShowDay: checkDate,
     onSelect: function (selected) {
       $('#reservation_start_date').datepicker('option', 'maxDate', selected);
+
+      let userStartDate = $('#reservation_start_date').datepicker('getDate');
+      let userEndDate = $('#reservation_end_date').datepicker('getDate');
+      let isDateValid = validateDate(userStartDate, userEndDate);
+      let countDays = getNumberOfDays(userStartDate, userEndDate);
+
+      changeCalendar(isDateValid, countDays);
     }
   });
 }
