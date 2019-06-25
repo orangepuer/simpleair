@@ -7,6 +7,8 @@ class Reservation < ApplicationRecord
 
   before_save :set_price, :set_total
 
+  default_scope { order(start_date: :desc) }
+
   private
 
   def days_count

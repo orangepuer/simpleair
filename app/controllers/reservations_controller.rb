@@ -17,6 +17,10 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def your_trips
+    @trips = current_user.reservations
+  end
+
   private
 
   def reservations_params
