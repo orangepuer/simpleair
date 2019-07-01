@@ -1,6 +1,8 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :room
+  has_one :host_review
+  has_one :guest_review
 
   validates :start_date, :end_date, presence: true
   validate :end_date_more, if: Proc.new { |a| a.start_date.present? && a.end_date.present? }
