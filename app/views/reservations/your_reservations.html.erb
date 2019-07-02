@@ -29,7 +29,7 @@
                   <%= image_tag reservation.room.photos.first.variant(resize: "180x180") %>
                 <% end %>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-5">
                 <span>
                   <%= link_to reservation.room.listing_name, room_path(reservation.room) %>
                   <br>
@@ -39,6 +39,9 @@
                     <%= reservation.user.fullname %>
                   <% end %>
                 </span>
+              </div>
+              <div class="col-md-3 text-right">
+                <%= render 'reviews/host_form', reservation: reservation %>
               </div>
             </div>
             <hr>

@@ -23,6 +23,7 @@ class ReservationsController < ApplicationController
 
   def your_reservations
     @rooms = current_user.rooms
+    @host_review = current_user.host_reviews.new
   end
 
   private
