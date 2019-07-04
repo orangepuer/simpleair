@@ -19,6 +19,7 @@ class ReservationsController < ApplicationController
 
   def your_trips
     @trips = current_user.reservations
+    @guest_review = current_user.guest_reviews.new
   end
 
   def your_reservations

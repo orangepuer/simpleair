@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-normal" data-toggle="modal" data-target="#myModal_<%= reservation.id %>">
+  Review Host
+</button>
+<div class="modal" id="myModal_<%= reservation.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-left">Review Your Host</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @guest_review, local: true) do |f| %>
+          <div class="form-group text-center">
+            <%= f.text_field :star %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :comment, rows: 3, class: 'form-control' %>
+          </div>
+          <%= f.hidden_field :reservation_id, value: reservation.id %>
+          <div class="text-center">
+            <%= f.submit 'Add Review', class: 'btn btn-normal' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

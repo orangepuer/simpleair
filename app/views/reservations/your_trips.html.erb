@@ -28,13 +28,17 @@
                 <%= image_tag trip.room.photos.first.variant(resize: "180x180") if trip.room.photos.attached? %>
               <% end %>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-5">
               <%= link_to trip.room.listing_name, room_path(trip.room) %>
-              <span class="pull-right text-center">
-                <%= image_tag avatar_url(trip.room.user), class: 'img-circle avatar-medium' %>
-                <br>
+              <br>
+              <br>
+              <span>
+                <%= image_tag avatar_url(trip.room.user), class: 'img-circle avatar-small' %>
                 <%= link_to trip.room.user.fullname, user_path(trip.room.user) %>
               </span>
+            </div>
+            <div class="col-md-3 text-right">
+              <%= render 'reviews/guest_form', reservation: trip %>
             </div>
           </div>
           <hr>
