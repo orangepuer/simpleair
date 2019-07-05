@@ -8,6 +8,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @guest_reviews = @room.guest_reviews
   end
 
   def new
