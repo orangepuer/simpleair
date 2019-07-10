@@ -8,13 +8,11 @@ class ReservationsController < ApplicationController
 
     if reservation.save
       flash[:notice] = 'Booked Successfully'
-
-      redirect_to room
     else
       helpers.flash_error_messages(reservation)
-
-      redirect_to room
     end
+
+    redirect_to room
   end
 
   def your_trips
