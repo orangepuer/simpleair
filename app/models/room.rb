@@ -11,6 +11,10 @@ class Room < ApplicationRecord
 
   geocoded_by :address
 
+  def average_rating
+    guest_reviews.present? ? guest_reviews.average(:star).round(1, half: :up) : 0
+  end
+
   def data_prepared?
     listing_name.present? && address.present? && price.present? && photos.attached?
   end
