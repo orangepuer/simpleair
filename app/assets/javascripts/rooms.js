@@ -129,3 +129,17 @@ document.addEventListener("turbolinks:before-cache", function() {
 document.addEventListener("turbolinks:before-render", function() {
   $.datepicker.dpDiv.appendTo(event.data.newBody);
 });
+
+document.addEventListener("turbolinks:load", function() {
+  $('.guest-review-stars').raty({
+    path: '/assets',
+    scoreName: 'guest_review[star]',
+    score: 1
+  });
+
+  $('.host-review-stars').raty({
+    path: '/assets',
+    scoreName: 'host_review[star]',
+    score: 1
+  });
+});
