@@ -130,6 +130,18 @@ document.addEventListener("turbolinks:before-render", function() {
   $.datepicker.dpDiv.appendTo(event.data.newBody);
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  $('.review-stars').each(function () {
+    let reviewStar = $(this).data('reviewStar');
+
+    $(this).raty({
+      path: '/assets',
+      readOnly: true,
+      score: reviewStar
+    });
+  });
+});
+
 document.addEventListener("turbolinks:load", function() {
   $('.guest-review-stars').raty({
     path: '/assets',

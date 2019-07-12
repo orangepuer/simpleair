@@ -15,9 +15,7 @@
         </strong>
       </div>
       <div class="col-md-9">
-        <div>
-          <%= review.star %>
-        </div>
+        <div id="star_<%= review.id %>" class="review-stars" data-review-star="<%= review.star %>"></div>
         <% if current_user == review.host %>
           <span class="pull-right">
             <%= link_to review, method: :delete, data: { confirm: 'Are you sure?' } do %>
