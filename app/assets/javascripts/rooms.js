@@ -140,6 +140,16 @@ document.addEventListener("DOMContentLoaded", function() {
       score: reviewStar
     });
   });
+
+  let averageRating = $('#average-rating');
+
+  if (averageRating) {
+    averageRating.raty({
+      path: '/assets',
+      readOnly: true,
+      score: averageRating.data('averageRating')
+    });
+  }
 });
 
 document.addEventListener("turbolinks:load", function() {

@@ -134,7 +134,7 @@
       <div class="col-md-12">
         <h3>
           <%= pluralize(@guest_reviews.count, 'Review') %>
-          <span id="average-rating"></span>
+          <span id="average-rating" data-average-rating="<%= @room.average_rating %>"></span>
         </h3>
       </div>
       <div class="container">
