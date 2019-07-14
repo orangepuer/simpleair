@@ -1,2 +1,43 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= form_with(url: search_path, method: :get, local: true) do %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= text_field_tag :search, params[:search], class: 'form-control' %>
+    </div>
+    <div class="col-md-3">
+      <%= text_field_tag :start_date, params[:start_date], readonly: true,
+                         placeholder: 'Start Date', class: 'form-control datepicker' %>
+    </div>
+    <div class="col-md-3">
+      <%= text_field_tag :end_date, params[:end_date], readonly: true,
+                         placeholder: 'End Date', class: 'form-control datepicker' %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+      <%= submit_tag 'Search', class: 'btn btn-normal btn-block' %>
+    </div>
+  </div>
+<% end %>
+<br>
+<hr>
+<br>
+<div>
+  <h3>Homes</h3>
+</div>
+<br>
+<div class="row">
+  <% @rooms.each do |room| %>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading preview">
+          <%= image_tag room.photos.first.variant(resize: "300x300") %>
+        </div>
+        <div class="panel-body">
+          <%= link_to room.listing_name, room %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
