@@ -9,7 +9,13 @@ class Room < ApplicationRecord
 
   after_validation :geocode, if: lambda{ |obj| obj.address_changed? }
 
+  scope :active, -> { where(active: true) }
+
   geocoded_by :address
+
+  def self.search_near(address)
+    near(address, 5, order: 'distance')
+  end
 
   def average_rating
     guest_reviews.present? ? guest_reviews.average(:star).round(1, half: :up) : 0
