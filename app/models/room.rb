@@ -17,6 +17,17 @@ class Room < ApplicationRecord
     near(address, 5, order: 'distance')
   end
 
+  def unavailable?(start_date, end_date)
+    room_unavailable = reservations.where('(start_date <= ? AND end_date >= ?) OR
+                                          (start_date <= ? AND end_date >= ?) OR
+                                          (start_date <= ? AND end_date >= ?)',
+                                          start_date, end_date,
+                                          start_date, start_date,
+                                          end_date, end_date).limit(1)
+
+    room_unavailable.present?
+  end
+
   def average_rating
     guest_reviews.present? ? guest_reviews.average(:star).round(1, half: :up) : 0
   end
