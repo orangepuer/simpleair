@@ -20,10 +20,10 @@ Rails.application.routes.draw do
   resources :host_reviews, only: [:create, :destroy]
   resources :guest_reviews, only: [:create, :destroy]
 
+  resource :search
+
   get 'your_trips', to: 'reservations#your_trips'
   get 'your_reservations', to: 'reservations#your_reservations'
-
-  get 'search', to: 'pages#search'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
