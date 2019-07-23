@@ -183,4 +183,16 @@ document.addEventListener("turbolinks:load", function() {
     scoreName: 'host_review[star]',
     score: 1
   });
+
+  let isFilterOpen = false;
+
+  $('#filter').click(function () {
+    if(isFilterOpen) {
+      $('#filter').html('More filters <i class="fa fa-chevron-down"></i>')
+    } else {
+      $('#filter').html('More filters <i class="fa fa-chevron-up"></i>')
+    }
+
+    isFilterOpen = !isFilterOpen
+  });
 });
