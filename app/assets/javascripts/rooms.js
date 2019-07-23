@@ -17,6 +17,38 @@ function initMap(lat, lng) {
   });
 }
 
+function initMapWithRooms(rooms) {
+  let myCoords;
+
+  if (rooms.length > 0) {
+    myCoords = new google.maps.LatLng(rooms[0].latitude, rooms[0].longitude);
+  } else {
+    myCoords = new google.maps.LatLng(37.7792808, -122.4192363);
+  }
+
+  let mapOptions = {
+    center: myCoords,
+    zoom: 14
+  };
+
+  let googleMap = document.getElementById('map');
+
+  if (googleMap) {
+    let map = new google.maps.Map(googleMap, mapOptions);
+
+    rooms.forEach(function (room) {
+      addMarker(room, map)
+    })
+  }
+}
+
+function addMarker(room, map) {
+  new google.maps.Marker({
+    position: new google.maps.LatLng(room.latitude, room.longitude),
+    map: map
+  });
+}
+
 function initCalendar(reservedDates, price) {
   let unavailableDates = [];
 
