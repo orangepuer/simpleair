@@ -15,7 +15,7 @@
     <div class="row">
       <br>
       <div class="collapse" id="collapsePanel">
-        <%= search_form_for(@search, url: search_path) do |f| %>
+        <%= search_form_for(@search, url: search_path, remote: true) do |f| %>
           <%= hidden_field_tag :search, params[:search], class: 'form-control' %>
           <div class="row">
             <div class="col-md-8">
@@ -115,19 +115,8 @@
         <% end %>
       </div>
       <br>
-      <div class="row">
-        <% @rooms.each do |room| %>
-          <div class="col-md-4">
-            <div class="panel panel-default">
-              <div class="panel-heading preview">
-                <%= image_tag room.photos.first.variant(resize: "300x300") %>
-              </div>
-              <div class="panel-body">
-                <%= link_to room.listing_name, room %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+      <div id="room-list" class="row">
+        <%= render 'rooms/room_list' %>
       </div>
     </div>
   </div>

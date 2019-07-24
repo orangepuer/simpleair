@@ -1,0 +1,3 @@
+$('#room-list').html('<%= j render 'rooms/room_list' %>');
+
+initMapWithRooms(<%= sanitize(@rooms.to_json) %>);
