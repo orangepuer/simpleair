@@ -227,4 +227,26 @@ document.addEventListener("turbolinks:load", function() {
 
     isFilterOpen = !isFilterOpen
   });
+
+  let sliderRange = $('#slider-range');
+
+  if (sliderRange) {
+    let priceGreaterThan = $('#q_price_gteq').val('50');
+    let pricelessThan = $('#q_price_lteq').val('700');
+
+    sliderRange.slider({
+      range: true,
+      min: 0,
+      max: 1500,
+      values: [50, 700],
+      slide: function(event, ui) {
+        priceGreaterThan.val(ui.values[0]);
+        pricelessThan.val(ui.values[1]);
+      }
+    });
+
+    $('.ui-widget-header').css('background', '#00A699');
+    $('.ui-state-default, .ui-widget-content').css('background', 'white');
+    $('.ui-state-default, .ui-widget-content').css('border-color', '#00A699');
+  }
 });
