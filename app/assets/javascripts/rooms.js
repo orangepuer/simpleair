@@ -183,6 +183,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  let averageRatings = $('.average-ratings');
+
+  averageRatings.each(function () {
+    $(this).raty({
+      path: '/assets',
+      readOnly: true,
+      score: $(this).data('averageRating')
+    });
+  });
+
   $('#start_date').datepicker({
     dateFormat: 'dd-mm-yy',
     minDate: 0,
