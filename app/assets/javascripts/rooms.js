@@ -259,4 +259,8 @@ document.addEventListener("turbolinks:load", function() {
     $('.ui-state-default, .ui-widget-content').css('background', 'white');
     $('.ui-state-default, .ui-widget-content').css('border-color', '#00A699');
   }
+
+  $(document).on("turbolinks:load", function(){
+    $('#autogeocomplete').geocomplete();
+  });
 });

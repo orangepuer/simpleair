@@ -1,3 +1,14 @@
+/*!
+ * jQuery Raty - A Star Rating Plugin
+ *
+ * The MIT License
+ *
+ * author:  Washington Botelho
+ * github:  wbotelhos/raty
+ * version: 2.9.0
+ *
+ */
+
 (function($) {
   'use strict';
 
