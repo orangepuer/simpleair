@@ -163,6 +163,9 @@ document.addEventListener("turbolinks:before-render", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+});
+
+document.addEventListener("turbolinks:load", function() {
   $('.review-stars').each(function () {
     let reviewStar = $(this).data('reviewStar');
 
@@ -211,9 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
       $('#start_date').datepicker('option', 'maxDate', selected);
     }
   });
-});
 
-document.addEventListener("turbolinks:load", function() {
   $('.guest-review-stars').raty({
     path: '/assets',
     scoreName: 'guest_review[star]',
