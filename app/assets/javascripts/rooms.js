@@ -163,9 +163,6 @@ document.addEventListener("turbolinks:before-render", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-});
-
-document.addEventListener("turbolinks:load", function() {
   $('.review-stars').each(function () {
     let reviewStar = $(this).data('reviewStar');
 
@@ -195,7 +192,9 @@ document.addEventListener("turbolinks:load", function() {
       score: $(this).data('averageRating')
     });
   });
+});
 
+document.addEventListener("turbolinks:load", function() {
   $('#start_date').datepicker({
     dateFormat: 'dd-mm-yy',
     minDate: 0,

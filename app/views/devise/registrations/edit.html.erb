@@ -5,7 +5,7 @@
         <%= link_to 'Edit Profile', edit_user_registration_path, class: 'sidebar-link active' %>
       </li>
       <li>
-        <%= link_to 'View My Profile', user_path(current_user), class: 'btn btn-default' %>
+        <%= link_to 'View My Profile', user_path(current_user), data: { turbolinks: false }, class: 'btn btn-default' %>
       </li>
     </ul>
   </div>
