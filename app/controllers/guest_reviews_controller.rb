@@ -2,6 +2,8 @@ class GuestReviewsController < ApplicationController
   before_action :set_reservation, only: [:create]
   before_action :authenticate_user!
 
+  authorize_resource
+
   def create
     if @reservation.guest_review.blank?
       guest_review = current_user.guest_reviews.new(guest_review_params)

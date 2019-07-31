@@ -3,6 +3,8 @@ class RoomsController < ApplicationController
   before_action :set_photos, only: [:show, :photo_upload]
   before_action :authenticate_user!, except: [:show]
 
+  authorize_resource
+
   def index
     @rooms = current_user.rooms
   end
