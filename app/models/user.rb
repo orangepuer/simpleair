@@ -10,4 +10,8 @@ class User < ApplicationRecord
   has_many :host_reviews, foreign_key: :host_id
 
   validates :fullname, presence: true, length: {maximum: 50}
+
+  def host?(room)
+    rooms.exists?(room.id)
+  end
 end

@@ -6,6 +6,7 @@ class Reservation < ApplicationRecord
 
   validates :start_date, :end_date, presence: true
   validate :end_date_more, if: Proc.new { |a| a.start_date.present? && a.end_date.present? }
+  validate :user_is_not_host
 
   before_save :set_price, :set_total
 
@@ -29,5 +30,11 @@ class Reservation < ApplicationRecord
 
   def set_total
     self.total = price * days_count
+  end
+
+  def user_is_not_host
+    if user.host?(room)
+      errors.add(:base, 'You can not reserve your own room')
+    end
   end
 end
