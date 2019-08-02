@@ -9,6 +9,7 @@ class Reservation < ApplicationRecord
   validate :user_is_not_host, if: Proc.new { |r| r.room.present? }
 
   before_save :set_price, :set_total
+  after_commit :notify_host, :on => :create
 
   default_scope { order(start_date: :desc) }
 
@@ -30,6 +31,10 @@ class Reservation < ApplicationRecord
 
   def set_total
     self.total = price * days_count
+  end
+
+  def notify_host
+    HostReservationJob.perform_later(self)
   end
 
   def user_is_not_host

@@ -1,0 +1,7 @@
+<h2>Hello <%= @host.fullname %></h2>
+<p>
+  Your <%= link_to @room.listing_name, @room %> is booked by <%= link_to @guest.fullname, @guest %>
+</p>
+<p>
+  <%= link_to 'go to your reservations', your_reservations_url %>
+</p>
