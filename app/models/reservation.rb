@@ -5,8 +5,8 @@ class Reservation < ApplicationRecord
   has_one :guest_review
 
   validates :start_date, :end_date, presence: true
-  validate :end_date_more, if: Proc.new { |a| a.start_date.present? && a.end_date.present? }
-  validate :user_is_not_host
+  validate :end_date_more, if: Proc.new { |r| r.start_date.present? && r.end_date.present? }
+  validate :user_is_not_host, if: Proc.new { |r| r.room.present? }
 
   before_save :set_price, :set_total
 
