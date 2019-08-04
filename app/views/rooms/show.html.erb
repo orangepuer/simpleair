@@ -1,6 +1,6 @@
 <script>
   $(document).on("turbolinks:load", function(){
-    initMap(<%= @room.latitude %>, <%= @room.longitude %>)
+    initMap(<%= sanitize(@room.to_json) %>)
   });
 </script>
 <div class="row">

@@ -1,20 +1,16 @@
-function initMap(lat, lng) {
-  var myCoords = new google.maps.LatLng(lat, lng);
-  var mapOptions = {
+function initMap(room) {
+  let myCoords = new google.maps.LatLng(room.latitude, room.longitude);
+  let mapOptions = {
     center: myCoords,
     zoom: 14
   };
-
-  var googleMap = document.getElementById('map');
+  let googleMap = document.getElementById('map');
 
   if (googleMap) {
-    var map = new google.maps.Map(googleMap, mapOptions);
-  }
+    let map = new google.maps.Map(googleMap, mapOptions);
 
-  var marker = new google.maps.Marker({
-    position: myCoords,
-    map: map
-  });
+    addMarker(room, map)
+  }
 }
 
 function initMapWithRooms(rooms) {
@@ -30,7 +26,6 @@ function initMapWithRooms(rooms) {
     center: myCoords,
     zoom: 14
   };
-
   let googleMap = document.getElementById('map');
 
   if (googleMap) {
