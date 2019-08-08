@@ -35,9 +35,10 @@
 
 <%= form_with(model: @room, local: true) do |f| %>
   <% if @room.active? %>
-    <%= f.submit 'Published', class: 'btn btn-normal btn-block', disabled: true %>
+    <%= f.hidden_field :active, value: false %>
+    <%= f.submit 'Unpublish', class: 'btn btn-normal btn-block' %>
   <% else %>
     <%= f.hidden_field :active, value: true %>
-    <%= f.submit 'Publish', class: 'btn btn-normal btn-block publish-button', disabled: !@room.data_prepared? %>
+    <%= f.submit 'Publish', class: 'btn btn-green btn-block publish-button', disabled: !@room.data_prepared? %>
   <% end %>
 <% end %>
