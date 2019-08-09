@@ -11,4 +11,8 @@ module ApplicationHelper
       flash['error_messages'] << message
     end
   end
+
+  def address_valid?(address)
+    Geocoder.coordinates(address).nil? ? false : true
+  end
 end
