@@ -17,15 +17,26 @@ class Room < ApplicationRecord
     near(address, 5, order: 'distance')
   end
 
-  def unavailable?(start_date, end_date)
-    room_unavailable = reservations.where('(start_date <= ? AND end_date >= ?) OR
-                                          (start_date <= ? AND end_date >= ?) OR
-                                          (start_date <= ? AND end_date >= ?)',
+  def available?(start_date, end_date)
+    reserved_date = self.reservations.where('(start_date <= ? AND end_date >= ?) OR
+                                          (start_date >= ? AND start_date <= ?) OR
+                                          (end_date >= ? AND end_date <= ?)',
                                           start_date, end_date,
-                                          start_date, start_date,
-                                          end_date, end_date).limit(1)
+                                          start_date, end_date,
+                                          start_date, end_date).limit(1)
 
-    room_unavailable.present?
+    reserved_date.blank?
+  end
+
+  def self.delete_unavailable_room(rooms, start_date, end_date)
+    if start_date.present? && end_date.present?
+      start_date = start_date.to_datetime
+      end_date = end_date.to_datetime
+
+      rooms.delete_if { |room| !room.available?(start_date, end_date) }
+    end
+
+    rooms
   end
 
   def average_rating
