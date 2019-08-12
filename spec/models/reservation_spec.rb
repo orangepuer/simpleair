@@ -24,6 +24,22 @@ RSpec.describe Reservation, type: :model do
       error_message = 'This date is not available, please check the booking date entered'
       expect(reservation.errors.full_messages).to include(error_message)
     end
+
+    it 'end date should be more than start date' do
+      reservation = build(:reservation, user: another_user, room: room,
+                          start_date: '2019-08-15', end_date: '2019-08-12')
+      reservation.save
+      expect(reservation).to_not be_valid
+      expect(reservation.errors.full_messages).to include('End date should be more of start date')
+    end
+
+    it 'user can not reserve his room' do
+      reservation = build(:reservation, user: user, room: room,
+                          start_date: '2019-08-12', end_date: '2019-08-15')
+      reservation.save
+      expect(reservation).to_not be_valid
+      expect(reservation.errors.full_messages).to include('You can not reserve your own room')
+    end
   end
 
   describe 'notify host' do
