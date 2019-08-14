@@ -1,20 +1,15 @@
 class GuestReviewsController < ApplicationController
-  before_action :set_reservation, only: [:create]
   before_action :authenticate_user!
 
   authorize_resource
 
   def create
-    if @reservation.guest_review.blank?
-      guest_review = current_user.guest_reviews.new(guest_review_params)
+    guest_review = current_user.guest_reviews.new(guest_review_params)
 
-      if guest_review.save
-        flash[:notice] = 'Review created'
-      else
-        helpers.flash_error_messages(guest_review)
-      end
+    if guest_review.save
+      flash[:notice] = 'Review created'
     else
-      flash[:alert] = 'You have already made a review'
+      helpers.flash_error_messages(guest_review)
     end
 
     redirect_back(fallback_location: request.referer)
@@ -27,12 +22,7 @@ class GuestReviewsController < ApplicationController
     redirect_back(fallback_location: request.referer, notice: 'Removed')
   end
 
-
   private
-
-  def set_reservation
-    @reservation = Reservation.find(guest_review_params[:reservation_id])
-  end
 
   def guest_review_params
     params.require(:guest_review).permit(:comment, :star, :reservation_id)
