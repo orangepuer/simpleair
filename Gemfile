@@ -37,7 +37,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.7'
 gem 'toastr-rails'
 gem 'geocoder'
 gem 'jquery-ui-rails'
